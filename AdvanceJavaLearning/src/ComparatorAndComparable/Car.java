@@ -8,6 +8,7 @@ package ComparatorAndComparable;
 
 public class Car implements  Comparable <Car>{
     private int topSpeed;
+
     private String name;
     private double price;
 
