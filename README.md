@@ -33,7 +33,7 @@ _►Objects:</br>_
 ```
 Student john = new Student("John", 24) 
 ```
-_►Encapsulation:_
+_►Encapsulation:_ </br>
 Encapsulation is mechanism of restricting access to certain details and showing only essential features.
 Its like a medical capsule that holds various medicins inside while protecting it from external environment.
 
@@ -54,7 +54,7 @@ class Student{
 }
 ```
 
-_►Inheritance:_
+_►Inheritance:_ </br>
 Inheritance is a mechanism where the new class is derived from existing class. 
 The new class is known as subclass, inherits the attributes and behaviour(methods) from the parent class.
 
@@ -78,7 +78,7 @@ alice.setBatchName("WEB15");//setBatchName method of subclass
 
 ```
 
-_►Polymorphism:_
+_►Polymorphism:_ </br>
 Ploymorphism allows methods to do differnt things based on the object it is acting upon.
 ```
 class Animal{
@@ -94,7 +94,7 @@ class Dog extends Animal{
 }
 ```
 
-_►Abstraction:_
+_►Abstraction:_ </br>
 Abstraction is a concept of hiding complex reality while exposing only necessary parts.
 It simplifies the complex details to ease user interaction with the system.
 
@@ -115,7 +115,103 @@ class Sedan extends Car{
     }
 }
 ```
+_►Constructor:_ </br>
+A constructor is a Java block of code that initializes a newly created Object. It does using _new_ keyword.
+Types: 
+1. Default Constructor: If no constructor is defined, Java provides a default constructor with no parmeter.
+2. Parameterized Constructor: A constructor that accepts parameter to initialize an object with specific values.
+3. Copy Constructr: Create new Objects as copy of existing object. Takes another object of the same class as parameter and copies its value.
 
+```
+class Student{
+    private String name;
+    
+    //Parameterized constructor
+    public Student(String name){
+        this.name = name;
+    }
+    //Copy constructor
+    public Student (Student student){
+        this.name = student.name
+    }
+}
+```
 
+_►Shalow Copy vs Deep Copy:_ </br>
+1. Shallow copy: </br>
+Shalow copy creats a new object, but fields of new object reference the same memory location as the original object.
+Change in one object reflects in the other.
+```
+Student stud1 = new Student("Alice", 20);
+Student stud2 = stud1;
+```
 
+2. Deep copy: </br>
+In Deep copy all the fields are copy from first object, but with new memory allocation for each one of them. 
+Change in one object does not reflects in the other.
+```
+class Student implements Cloneable {  
+    String name;  
+    int age;  
 
+    public Student(String name, int age) {  
+        this.name = name;  
+        this.age = age;  
+    }  
+
+    // Deep Copy  
+    @Override  
+    public Object clone() throws CloneNotSupportedException {  
+        // Create a shallow copy using the super.clone() method  
+        Student clonedStudent = (Student) super.clone();  
+        // Create a new String for the name to ensure it's a deep copy  
+        clonedStudent.name = new String(this.name);   
+        // Age is a primitive type, so it is automatically copied  
+
+        return clonedStudent;  
+    }  
+
+    @Override  
+    public String toString() {  
+        return "Student{name='" + name + "', age=" + age + "}";  
+    }  
+
+    public static void main(String[] args) {  
+        try {  
+            // Create an original Student object  
+            Student original = new Student("Alice", 20);  
+            System.out.println("Original: " + original);  
+
+            // Clone the original object  
+            Student cloned = (Student) original.clone();  
+            System.out.println("Cloned: " + cloned);  
+
+            // Modify the cloned object's name  
+            cloned.name = "Bob";  
+
+            // Show that changing the cloned object does not affect the original  
+            System.out.println("After modifying cloned object:");  
+            System.out.println("Original: " + original);  
+            System.out.println("Cloned: " + cloned);  
+        } catch (CloneNotSupportedException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+}  
+```
+
+►_Access Modifiers:_ <br/>
+1. Public: The member is accessible from any other class.
+2. Private: The member is accessible from inside its own class.
+3. Protected: The member is accessible withing its package and subclass.
+4. Default / Package-private: The member is accessible only within its own package
+
+NOTE: In java Methods Parameter are passed by value 
+```
+void modifyStudent(Student st) {
+    st.age = 22;
+}
+
+Student st1 = new Student("Alice", 20);
+modifyStudent(st1);  // The age of st1 will be changed to 22
+```
