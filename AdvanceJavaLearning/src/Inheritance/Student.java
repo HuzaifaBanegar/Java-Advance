@@ -8,6 +8,12 @@ public class Student {
         this.age = age;
     }
 
+    //Copy Constructor - 
+    public Student(Student student){
+        this.name = student.name;
+        this.age = student.age;
+    }
+
     public Student() {
     }
 
