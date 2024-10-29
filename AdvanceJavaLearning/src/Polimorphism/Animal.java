@@ -10,7 +10,7 @@ public class Animal {
         System.out.println( animal_name+ " is walking");
     }
 
-    //Method overloading ----------------------------
+    //Method overloading ---------------------------- same method name but arguments are diff
     public static void walk(){
         System.out.println( name+ " is walking");
     }
