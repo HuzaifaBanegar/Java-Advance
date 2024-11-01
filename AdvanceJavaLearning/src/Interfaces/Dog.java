@@ -24,5 +24,6 @@ public class Dog implements Animal {
         dog.sleep();
         dog.makeSound();
         Animal.play();
+
     }
 }
