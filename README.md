@@ -200,7 +200,7 @@ class Student implements Cloneable {
 }  
 ```
 
-►_Access Modifiers:_ <br/>
+_►Access Modifiers: <br/>_
 1. Public: The member is accessible from any other class.
 2. Private: The member is accessible from inside its own class.
 3. Protected: The member is accessible withing its package and subclass.
@@ -215,3 +215,154 @@ void modifyStudent(Student st) {
 Student st1 = new Student("Alice", 20);
 modifyStudent(st1);  // The age of st1 will be changed to 22
 ```
+
+_►Abstract classes: <br/>_
+An abstract class is a class that cannot be intatiated on its own and may contain both abstract methods (methods without implementtation) and complete methods (methods with implementtation).
+It is necessary to implement the abstract methods in child class of an Abstract class. </br>
+Members:
+1. Can have fields to hold state
+2. Can have abstract methods and complete methods
+3. Can define constructor
+4. Basically it is same as a class , but can hold abstract methods in it and cannot be instantaited.
+
+```
+//ABSTRACT CLASS VEHICLE
+abstract public class Vehicle {
+    //For all the abstract methods it is necessary to provide implementation in the child class when created
+    abstract void startEngine();
+
+    // Abstract class can have its own members
+    private boolean created;
+
+    //Abstract method can have constrctor
+    public Vehicle(){
+        System.out.println("A vehicle is being constructed");
+        created = true;
+        System.out.println("Is Vehicle constructed? "+ created);
+    }
+
+    //It can also have complete methods
+    void stopEngine(){
+        System.out.println("Engine stopped");
+    }
+
+}
+
+//CLASS CAR
+public class Car extends  Vehicle{
+
+    public Car(){
+        System.out.println("Car is constrcted");
+    }
+    void startEngine(){
+        System.out.println("Car Engine started");
+    }
+
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.startEngine();
+        car.stopEngine();
+    }
+}
+```
+
+_►Interfaces: </br>_
+Interface is a contract that defines a set of abstract methods that needs to be defined by the class that implements it.
+It contains only abstract methods and no complete methods.</br>
+Members:
+1. Cannot have instance fields.
+2. Only abstract methods (After Java8 they can have some default static methods)
+3. Cannot define constrctor
+4. Cannot be instantiated.
+
+```
+//INTERFACE ANIMAL
+public interface Animal {
+    void eat();
+    void sleep();
+    void makeSound();
+    
+    //Cannot be called by instantiated object by the class that implements interface Animal.
+    //Should directly be called as Animal.play()
+    public static void play(){
+        System.out.println("Animal is playing");
+    }
+}
+
+//CLASS DOG
+public class Dog implements Animal {
+    //It is mandatory to provide implementation for all the methods without it there will be an error
+    @Override
+    public void eat() {
+        System.out.println("Dog eats");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("Dog sleeps");
+    }
+
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+
+
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat();
+        dog.sleep();
+        dog.makeSound();
+        Animal.play();
+    }
+}
+```
+
+_►Abstract Classes vs Inteface:_ </br>
+
+<table>  
+    <thead>  
+        <tr>  
+            <th>Feature</th>  
+            <th>Abstract Class</th>  
+            <th>Interface</th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        <tr>  
+            <td>Instantiation</td>  
+            <td>Cannnot be instantiated</td>  
+            <td>Cannnot be instantiated</td>  
+        </tr>  
+        <tr>  
+            <td>Type of Methods</td>  
+            <td>Can have abstract and concrete</td>  
+            <td>Primarily abstract; can have default methods (from Java 8)</td>  
+        </tr>  
+        <tr>  
+            <td>Fields</td>  
+            <td>Can have fields</td>  
+            <td>Cannot have fields</td>  
+        </tr>  
+        <tr>  
+            <td>Constructors</td>  
+            <td>Can have constructors</td>  
+            <td>Cannot have constructors</td>  
+        </tr>  
+        <tr>  
+            <td>Access Modifiers</td>  
+            <td>Can have any access modifier</td>  
+            <td>All members are implicitly public</td>  
+        </tr>  
+        <tr>  
+            <td>Inheritance</td>  
+            <td>Single inheritance</td>  
+            <td>Multiple inheritance</td>  
+        </tr>  
+        <tr>  
+            <td>Use Case</td>  
+            <td>To provide a base class with shared code</td>  
+            <td>To define a contract for unrelated classes</td>  
+        </tr>  
+    </tbody>  
+</table>
