@@ -21,4 +21,9 @@ public class StaticCount {
 
     }
 
+    static void printElements(){
+        System.out.println(count);
+//        System.out.println(name); -- Static methods can only access static variables
+    }
+
 }
