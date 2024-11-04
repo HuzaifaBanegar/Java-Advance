@@ -10,6 +10,9 @@ public class GraduatedStudent extends  Student{
         this.batch = batch;
     }
 
+    public void display(){
+        System.out.println("Child Display");
+    }
 
     public void getDetails(){
         getStudentDetails();

@@ -10,6 +10,9 @@ public class Main {
         s2.setBatch("WEB 24");
         s2.getDetails();
 
+        Student s3 = new GraduatedStudent();
+        s3.display();
+
     }
 
 }

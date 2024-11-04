@@ -8,6 +8,10 @@ public class Student {
         this.age = age;
     }
 
+    public void display(){
+        System.out.println("Parent Display");
+    }
+
     //Copy Constructor - 
     public Student(Student student){
         this.name = student.name;
