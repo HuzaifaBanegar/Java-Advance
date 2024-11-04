@@ -10,4 +10,8 @@ public interface Animal {
     public static void play(){
         System.out.println("Animal is playing");
     }
+
+    default void defaultMethod(){
+        System.out.println("Default method");
+    }
 }
