@@ -366,3 +366,50 @@ _►Abstract Classes vs Inteface:_ </br>
         </tr>  
     </tbody>  
 </table>
+</br>
+<hr/>
+</br>
+
+**2. PROCESS AND THREADS:**
+</br>
+_Parellelism Vs Concurrency: Parellelism is a process where multiple process runs in parellel to each other, whereas concurrency is a process where a lots of process happens at once_ </br>
+
+_►Threads:</br>_
+Threads are executable instructions within the program that can run independently.</br>
+
+_Key Steps to Create a Thread_
+1. Define a class that implements the Runnable interface.
+2. Implement the run method in your class.
+3. Create an object of the Thread class, passing your Runnable object to the constructor.
+4. Start the thread using the start method of the Thread object.
+
+_Code 1:Print 1-100 by different Threads_
+```
+//Runnable class NumberPrinter with a constructor that take a number
+//Then in run() method it prints along with the thread that is printing it
+public class NumberPrinter implements Runnable {
+    private int number;
+
+    public NumberPrinter(int number) {
+        this.number = number;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Number "+this.number + " Is Printed by:" + Thread.currentThread().getName());
+    }
+}
+
+// New Thread is created and an Object instantiated using NumberPrinter class is passed to it.
+// start() method is used which internally calles the run() method
+public class Client1 {
+    public static void main(String[] args) {
+        // Manual thread creation:
+        for(int i=1; i<=100; i++){
+            Thread thread = new Thread(new NumberPrinter((i)));
+            thread.start();
+        }
+    }
+}
+```
+
