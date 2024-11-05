@@ -412,6 +412,39 @@ public class Client1 {
     }
 }
 ```
+
+_►Static variable:_ </br>
+A variable which is shared by all the instances of the class. It is basically a class level variable and not object level variable.
+```
+public class StaticCount {
+    public static int count = 0;
+
+    private String name;
+
+    public StaticCount(String name) {
+        this.name = name;
+        count++;
+    }
+
+    // Static count is related to the class and not the instace of it.
+    // When an object is instatiated, the count is getting incremented.
+    // We can call it as st1.count, but it doesn't matter
+    // as it is class level and not object level
+
+    public static void main(String[] args) {
+        StaticCount st = new StaticCount("test");
+        StaticCount st1 = new StaticCount("test1");
+        System.out.println(StaticCount.count);
+
+    }
+
+    static void printElements(){
+        System.out.println(count);
+//        System.out.println(name); -- Static methods can only access static variables
+    }
+
+}
+```
 _►Debugging Threads:_ </br>
 
 To understand thread behavior during execution using logging and thread dump analysis, follow these steps:
