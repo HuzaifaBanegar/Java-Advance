@@ -375,7 +375,49 @@ _►Abstract Classes vs Inteface:_ </br>
 _Parellelism Vs Concurrency: Parellelism is a process where multiple process runs in parellel to each other, whereas concurrency is a process where a lots of process happens at once_ </br>
 
 _►Threads:</br>_
-Threads are executable instructions within the program that can run independently.</br>
+<img src="https://images.shiksha.com/mediadata/images/articles/1700221408phpKnMejT.jpeg" height="100px" width="100px"></img>
+### What are Threads?
+A **thread** is the smallest unit of execution within a process. Threads are often referred to as lightweight processes because they allow multiple tasks to run concurrently within the same application. While a **process** is an instance of a running program, a **thread** is a path of execution within a process.
+
+### Why Are Threads Used?
+Threads are used to improve application performance through **parallelism** and **concurrency**. They allow tasks within a program to be executed independently, helping with:
+- **Responsiveness**: For instance, in a web browser, separate threads allow background tasks like page loading and video streaming to run without freezing the interface.
+- **Efficiency**: Threads share resources of the process they belong to, making them more memory-efficient than processes.
+- **Resource Sharing**: Threads within the same process share memory space and system resources, allowing for more efficient communication.
+
+### Key Concepts Related to Threads
+
+1. **Processes**: A process is an independent unit of execution that has its own memory space. It represents a running instance of a program and can contain multiple threads. Each process runs in its own separate address space, meaning one process generally cannot access another process’s memory.
+
+2. **Program Counter (PC)**: The program counter is a register in the CPU that holds the address of the next instruction to be executed for a particular process or thread. In multi-threaded applications, each thread maintains its own program counter, as they may be executing different parts of code.
+
+3. **Multithreading**: The ability of a CPU or single-core processor to manage multiple threads of execution at the same time. In a multi-core processor, true parallelism can occur, where multiple threads run simultaneously on different cores.
+
+4. **Context Switching**: Switching the CPU from one thread or process to another. Each thread has its own program counter, stack, and local variables. During context switching, the CPU saves the current state (e.g., program counter and registers) of the thread and loads the state of another thread.
+
+5. **Concurrency vs. Parallelism**: 
+   - **Concurrency** is when multiple tasks make progress within overlapping time frames (e.g., threads taking turns in a single-core CPU).
+   - **Parallelism** is when tasks are executed simultaneously (e.g., multiple threads running on a multi-core CPU).
+
+6. **Thread Lifecycle**: A thread goes through different states in its lifecycle:
+   - **New**: Thread is created but not yet started.
+   - **Runnable**: Thread is ready to run, waiting for CPU time.
+   - **Blocked/Waiting**: Thread is waiting for a resource or another thread.
+   - **Timed Waiting**: Thread is waiting for a specific amount of time.
+   - **Terminated**: Thread has finished executing.
+
+### Advantages and Disadvantages of Threads
+**Advantages**:
+- **Improved Responsiveness**: Applications can remain responsive while doing background tasks.
+- **Resource Sharing**: Threads within the same process can share memory and resources, which is efficient.
+- **Efficient Communication**: Threads in a process can easily communicate with each other since they share memory.
+
+**Disadvantages**:
+- **Complexity**: Writing multi-threaded programs can be complex and requires careful handling of synchronization.
+- **Synchronization Issues**: Shared data must be synchronized, leading to potential issues like **race conditions** and **deadlocks**.
+
+### Summary
+Threads allow concurrent execution within a process, improving application responsiveness and efficiency. Each thread within a process has its own program counter and can run independently, making multi-threading an essential concept in modern programming for managing multiple tasks simultaneously.
 
 _Key Steps to Create a Thread_
 1. Define a class that implements the Runnable interface.
