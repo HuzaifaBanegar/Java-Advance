@@ -375,7 +375,9 @@ _►Abstract Classes vs Inteface:_ </br>
 _Parellelism Vs Concurrency: Parellelism is a process where multiple process runs in parellel to each other, whereas concurrency is a process where a lots of process happens at once_ </br>
 
 _►Threads:</br>_
-<img src="https://images.shiksha.com/mediadata/images/articles/1700221408phpKnMejT.jpeg" height="100px" width="100px"></img>
+
+<img alt="Multithreading" src="https://i.ytimg.com/vi/P38y6zvfb-s/maxresdefault.jpg"
+         />
 ### What are Threads?
 A **thread** is the smallest unit of execution within a process. Threads are often referred to as lightweight processes because they allow multiple tasks to run concurrently within the same application. While a **process** is an instance of a running program, a **thread** is a path of execution within a process.
 
