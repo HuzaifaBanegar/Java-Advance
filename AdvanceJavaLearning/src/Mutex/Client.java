@@ -1,19 +1,19 @@
 package Mutex;
 
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Client {
     public static void main(String[] args) throws InterruptedException {
-        Count count = new Count();
-        count.val =0;
+        Counter counter = new Counter();
         Lock lock = new ReentrantLock();
-        Adder adder = new Adder(count, lock);
-        Subtractor sub = new Subtractor(count, lock);
+
+        Adder adder = new Adder(counter, lock);
+        Subtractor subtractor = new Subtractor(counter, lock);
 
         Thread t1 = new Thread(adder);
-        Thread t2 = new Thread(sub);
-
+        Thread t2 = new Thread(subtractor);
 
         t1.start();
         t2.start();
@@ -21,8 +21,7 @@ public class Client {
         t1.join();
         t2.join();
 
-        System.out.println(count.val);
+        System.out.println(counter.count);
+
     }
-
-
 }

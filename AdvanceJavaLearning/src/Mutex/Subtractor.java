@@ -2,21 +2,24 @@ package Mutex;
 
 import java.util.concurrent.locks.Lock;
 
-public class Subtractor implements  Runnable{
-    private  Count count;
-    private Lock lock;
+public class Subtractor implements Runnable {
 
-    public Subtractor(Count count, Lock lock){
-        this.count = count;
+    public Counter counter;
+    public Lock lock;
+    public Subtractor(Counter counter,Lock lock) {
+        this.counter= counter;
         this.lock = lock;
     }
-
     @Override
     public void run() {
-        for(int i=1; i<=1000; i++){
-            lock.lock();
-            count.val-= i;
-            lock.unlock();
+
+        for(int i=1; i<=100; i++){
+            synchronized (lock){
+                lock.lock();
+                counter.count= counter.count-i;
+                lock.unlock();
+            }
         }
+
     }
 }
