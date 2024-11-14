@@ -1,8 +1,10 @@
 package Threads;
-public class NumberPrinter implements Runnable {
+
+public class NumberPrinter2 extends Thread{
+
     private int number;
 
-    public NumberPrinter(int number) {
+    public NumberPrinter2(int number) {
         this.number = number;
     }
 
