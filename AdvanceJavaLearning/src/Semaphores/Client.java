@@ -5,7 +5,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        // ConcurrentLinkedQueue: Utilize atomic operations to ensure thread safety without locks
         Queue<Object> queue = new ConcurrentLinkedQueue<>();
         Semaphore producer = new Semaphore(6);
         Semaphore consumer = new Semaphore(0);
@@ -48,5 +49,7 @@ public class Client {
         tc3.start();
         tc4.start();
         tc5.start();
+
+
     }
 }
