@@ -523,3 +523,5 @@ By following these steps, you can effectively use logging and thread dump analys
 Threads share the same memory space, making data sharing easier but requiring careful synchronization.
 Processes have separate memory spaces, making them more isolated but harder to share data efficiently
 
+### For more detailed explanation of threads i have posted a blog of 4 parts on it. Please go through it here:
+https://medium.com/@huzaifaBanegar/multithreading-in-java-basics-to-in-depth-guide-part1-22d70f270a8a
