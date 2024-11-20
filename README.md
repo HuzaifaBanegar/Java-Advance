@@ -737,3 +737,92 @@ static class Node<K, V> implements Map.Entry<K, V> {
     - As elements are added, when the number of entries exceeds a threshold (commonly 75% of the capacity), the HashMap resizes:
         - A new, larger array is created (typically double the size).]
         - All existing entries are rehashed and redistributed into the new array using the same hashing process. This process is necessary because the index calculation depends on the current array size.
+</br>
+<hr/>
+</br>
+
+Sure! Let’s break down **Garbage Collection** and **Memory Management** in Java, as these are crucial aspects of how Java handles memory and object lifecycles.
+
+### 1. Garbage Collection in Java
+
+**Garbage Collection (GC)** is an automatic memory management feature in Java that helps reclaim memory occupied by objects that are no longer reachable or used by an application. The Java Virtual Machine (JVM) takes care of garbage collection, meaning developers don’t have to manually free memory as they might in languages like C or C++.
+
+#### How Garbage Collection Works:
+
+- **Automatic Memory Management**: Java objects are allocated in a region of memory known as the **heap**. When an object is created, memory for it is allocated on the heap.
+  
+- **Reachability**: An object is considered **reachable** if it can be accessed via any chain of reference from a root reference (like local variables on the stack, active threads, etc.). When an object is no longer reachable, it becomes eligible for garbage collection.
+
+- **Garbage Collector**: The JVM runs a garbage collector in the background that periodically identifies and disposes of unreachable objects to reclaim memory.
+
+#### Types of Garbage Collectors:
+
+Java provides several types of garbage collectors, each with its own strengths:
+
+1. **Serial Garbage Collector**:
+   - Designed for single-threaded environments.
+   - Uses a simple approach where all garbage collection occurs in a single thread, making it suitable for small applications.
+
+2. **Parallel Garbage Collector**:
+   - Uses multiple threads for garbage collection.
+   - Aimed at maximizing throughput, making it suitable for applications requiring high performance.
+
+3. **Concurrent Mark-Sweep (CMS) Collector**:
+   - Aims to minimize pause times by doing most of the work concurrently with the application threads.
+   - Good for applications sensitive to latency.
+
+4. **G1 Garbage Collector**:
+   - A more recent addition that divides the heap into regions and performs garbage collection in a way that minimizes pause times.
+   - Aims to provide a predictable pause time that can be configured.
+
+5. **Z Garbage Collector (ZGC)** and **Shenandoah**:
+   - Low-latency garbage collectors designed for large heaps, allowing for garbage collection with minimal pauses.
+
+#### Process of Garbage Collection:
+
+The garbage collection process generally includes several steps:
+
+1. **Marking phase**: The garbage collector identifies which parts of the heap contain reachable objects.
+2. **Sweeping phase**: It then collects the objects that are unreachable, freeing up memory space.
+3. **Compacting phase** (optional): To reduce fragmentation, the collector may move objects around and reduce the size of the allocation space, which makes allocation of new objects faster.
+
+#### Finalization:
+
+Before an object is garbage collected, its `finalize()` method may be called, allowing cleanup operations (like closing files or database connections) to occur. However, using `finalize()` is generally discouraged in favor of other resource management practices (like try-with-resources).
+
+### 2. Memory Management in Java
+
+Memory management in Java involves the lifecycle of objects and how memory is allocated, used, and deallocated during a program’s execution. The JVM handles memory management, which includes several components:
+
+#### Memory Areas in Java:
+
+1. **Heap Memory**:
+   - The primary storage area for objects. When an object is created using `new`, memory for that object is allocated in the heap.
+   - Managed by the garbage collector.
+
+2. **Stack Memory**:
+   - Each thread has its own stack, which stores method call frames, local variables, and method arguments.
+   - Memory allocation on the stack is very fast and follows the Last In, First Out (LIFO) principle. When a method call is completed, its stack frame is removed.
+
+3. **Method Area** (also known as the MetaSpace in Java 8 and above):
+   - Stores class structure, including metadata, constants, and static variables.
+   - The *JVM* allocates method area memory at startup.
+
+4. **Native Method Stack**:
+   - Contains all the native method information for the application.
+   - Similar in structure to the stack memory used for Java methods, but specifically for native methods.
+
+#### Memory Allocation:
+
+- **New Object Creation**: When an object is created using the `new` keyword, the memory is allocated on the heap.
+- **Reference Variables**: Variables that refer to the objects are stored either on the stack (if they're local variables) or in the heap (if they are class or instance variables).
+
+#### Memory Leaks:
+
+- A memory leak occurs when a program does not release the memory it no longer requires. This can be caused by holding references to objects that are no longer needed, preventing the garbage collector from reclaiming that memory.
+
+#### Conclusion:
+Java's garbage collection and memory management systems allow developers to focus more on writing code rather than handling memory allocation and deallocation, leading to increased productivity and reduced likelihood of memory-related bugs. However, understanding these concepts can still help developers write efficient Java applications and troubleshoot performance issues.
+
+If you need any further clarification or details on specific aspects, feel free to ask!
+
