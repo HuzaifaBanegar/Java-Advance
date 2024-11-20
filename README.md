@@ -604,4 +604,5 @@ class Calculator<T extends Number>{
 Calculator<Integer> calc = new Calculator<>();
 System.out.println(cal.add(5,10)); // output: 15.0
 ```
-
+<hr/>
+</br>
