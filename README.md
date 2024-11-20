@@ -526,6 +526,10 @@ Processes have separate memory spaces, making them more isolated but harder to s
 ### For more detailed explanation of threads i have posted a blog of 4 parts on it. Please go through it here:
 https://medium.com/@huzaifaBanegar/multithreading-in-java-basics-to-in-depth-guide-part1-22d70f270a8a
 
+</br>
+</hr>
+</br>
+
 **3. Generics:** </br>
 Generics in a very powerful feature in programming languages such as Java and C# that enables you to write code that is more flexible, reusable and type-safe.
 They allow different classes, interface, methods with a placholder for types ( referred to as parameters) which can be specified when you create an instance or call methods.
@@ -606,3 +610,72 @@ System.out.println(cal.add(5,10)); // output: 15.0
 ```
 <hr/>
 </br>
+
+**4. Collections:** </br>
+
+**Collections** in Java refer to a group of objects, known as elements. They are part of the Java Collections Framework (JCF) and provide a way to store, retrieve, manipulate, and communicate aggregate data. Collections can be categorized into various types, such as lists, sets, and maps, which serve different purposes depending on the requirements of the application.
+
+_►Collection Framework_ </br>
+The **Collection Framework** is a unified architecture for representing and manipulating collections in Java. It provides a set of interfaces and classes that allow developers to work with groups of objects in a standard way. The main interfaces in the collection framework are:
+- **Collection**: The root interface for all collections.
+- **List**: An ordered collection (also known as a sequence).
+- **Set**: A collection that does not allow duplicate elements.
+- **Map**: An object that maps keys to values, where each key is unique.
+
+_►_Hierarchy of Collection Framework__ </br>
+The hierarchy of the Collection Framework can be summarized as follows:
+
+- **Collection Interface**
+  - **List Interface**
+    - **ArrayList**
+    - **LinkedList**
+    - **Stack**
+    - **Vector**
+  - **Set Interface**
+    - **EnumSet**     
+    - **HashSet**
+    - **LinkedHashSet**
+    - **TreeSet**
+  - **Queue Interface**
+    - **ArrayDeque**     
+    - **PriorityQueue**
+    - **LinkedList** (also implements Queue)
+  - **Map Interface**
+    - **HashMap**
+    - **LinkedHashMap**
+    - **TreeMap**
+    - **ConcurrentHashMap**
+
+_►4. List_ </br>
+A **List** is an ordered collection that allows duplicate elements. It maintains the order of insertion, which means elements can be accessed by their index. Common implementations of the List interface include:
+- **ArrayList**: A resizable array implementation that allows for fast random access but can be slower for insertions and deletions.
+- **LinkedList**: A doubly-linked list implementation that allows for efficient insertions and deletions but has slower access times compared to ArrayList.
+- **Vector**: Similar to ArrayList but synchronized, making it thread-safe but generally slower due to the overhead of synchronization.
+
+_►Set_ </br>
+A **Set** is a collection that does not allow duplicate elements. It models the mathematical set abstraction and is used when uniqueness is required. Common implementations include:
+- **HashSet**: Uses a hash table for storage and provides constant-time performance for basic operations (add, remove, contains).
+- **LinkedHashSet**: Maintains a linked list of the entries in the set, preserving the order of insertion.
+- **TreeSet**: Implements a sorted set using a red-black tree, which means it keeps its elements in sorted order.
+
+_►Queue_ </br>
+A **Queue** is a collection designed for holding elements prior to processing. It follows the First-In-First-Out (FIFO) principle. Implementations include:
+- **PriorityQueue**: Orders its elements based on their natural ordering or a specified comparator, allowing for priority-based retrieval.
+- **LinkedList**: Can also be used as a queue since it implements the Queue interface, allowing for efficient insertions and deletions at both ends.
+
+_►HashSet vs HashMap_ </br>
+- **HashSet**: A collection that implements the Set interface. It stores unique elements and does not allow duplicates. It uses a hash table for storage, which provides fast access.
+- **HashMap**: Implements the Map interface and stores key-value pairs. Each key is unique, and it allows for one null key and multiple null values. HashMap is also backed by a hash table, providing efficient retrieval.
+
+► _TreeMap_ </br>
+**TreeMap** is a map that implements the SortedMap interface and uses a red-black tree structure to store its entries. It maintains the natural ordering of its keys or uses a specified comparator. TreeMap provides efficient performance for operations like insertion, deletion, and lookup, all in O(log n) time.
+
+_►LinkedHashMap_ </br>
+**LinkedHashMap** is a hash table and linked list implementation of the Map interface. It maintains a doubly-linked list of the entries in the map, which allows it to preserve the order of insertion. This means that when iterating over the keys or entries, they will be returned in the order they were added.
+
+_►Vector_ </br>
+**Vector** is a resizable array implementation of the List interface. Unlike ArrayList, it is synchronized, making it thread-safe. However, this synchronization makes it slower than ArrayList in scenarios where thread safety is not a concern. Vectors can grow dynamically as elements are added.
+
+_►ConcurrentHashMap_ </br>
+**ConcurrentHashMap** is a thread-safe variant of HashMap designed for concurrent access. It allows multiple threads to read and write without locking the entire map, improving performance in multi-threaded environments. It divides the map into segments, allowing for concurrent updates to different segments.
+
