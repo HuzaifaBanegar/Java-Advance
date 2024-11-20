@@ -679,3 +679,5 @@ _►Vector_ </br>
 _►ConcurrentHashMap_ </br>
 **ConcurrentHashMap** is a thread-safe variant of HashMap designed for concurrent access. It allows multiple threads to read and write without locking the entire map, improving performance in multi-threaded environments. It divides the map into segments, allowing for concurrent updates to different segments.
 
+
+
