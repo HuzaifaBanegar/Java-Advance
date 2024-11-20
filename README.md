@@ -680,4 +680,60 @@ _►ConcurrentHashMap_ </br>
 **ConcurrentHashMap** is a thread-safe variant of HashMap designed for concurrent access. It allows multiple threads to read and write without locking the entire map, improving performance in multi-threaded environments. It divides the map into segments, allowing for concurrent updates to different segments.
 
 
+_►Internal Implementation of HashMap_ </br>
+- Structure
+   - Array of Buckets:
+       - The fundamental structure of a HashMap is an array of buckets (also referred to as "nodes"). Each bucket can hold a linked list (or a     balanced tree, depending on the number of elements in that bucket) of entries for keys that hash to the same index (known as a collision).
+    - Entry Class: Each bucket contains instances of the Entry class (or Node class in some newer implementations). Each Entry holds:
+        - Key: The key for the entry.
+        - Value: The value associated with the key.
+        - Hash: The hash code of the key, used for quick comparisons.
+        - Next: A pointer/reference to the next entry in case of a collision. This forms a linked list for entries whose keys hash to the same index.
+```
+// Here’s a simplified version of the Entry class:
 
+static class Node<K, V> implements Map.Entry<K, V> {  
+    final K key;  
+    V value;  
+    final int hash;  
+    Node<K, V> next;  
+
+    Node(int hash, K key, V value, Node<K, V> next) {  
+        this.hash = hash;  
+        this.key = key;  
+        this.value = value;  
+        this.next = next;  
+    }  
+}
+```
+- How Hashing Works
+    - Hashing Process:
+    When a key is added to a HashMap, its hash code is computed using the hashCode() method of the key object, which is a method inherited from the Object class in Java. </br>
+    The hash code is then processed through a hashing function to determine the index in the array of buckets. The process involves two main steps:
+        - Computing the hash code: The hash code of the key is obtained using key.hashCode().
+        - Index calculation: The actual index for the bucket is calculated as follows:</br>
+          int index = (n - 1) & hash;  // where n is the length of the table and hash is the hash code
+        - This ensures that the index wraps around if it goes beyond the size of the array (using bitwise AND with the array size minus one).
+    - Collision Handling:
+        - HashMap uses chaining to resolve collisions:
+            - If two keys hash to the same index, their entries are stored in the same bucket as a linked list. This means that the bucket can hold multiple entries.
+            - If the number of entries in a single bucket exceeds a certain threshold (usually 8), the linked list is transformed into a balanced tree (specifically a red-black tree) for improved performance in retrieval operations.
+-Example of Adding Element:
+    -  Calculate the hash:
+        int hash = "apple".hashCode();
+    -  Determine the bucket index:
+      int index = (n - 1) & hash; // assuming n is the length of the array
+    -  Insert into the bucket:
+        - If the bucket at the calculated index is empty, the entry is simply placed there.
+        - If there is already an entry, it checks for equality using the hash, key, and if they match, updates the value; if not, it adds the new entry to the front of the linked list.  
+
+- Retrieving an Element
+      - To retrieve a value associated with a key in a HashMap:
+          - Calculate the hash for the key as before.
+          - Find the bucket index.
+          - Traverse the linked list (or tree, if applicable) in that bucket:
+          - Compare the hash and the keys of the entries until the correct entry is found or the end of the list is reached.
+- Resizing HashMap:
+    - As elements are added, when the number of entries exceeds a threshold (commonly 75% of the capacity), the HashMap resizes:
+        - A new, larger array is created (typically double the size).]
+        - All existing entries are rehashed and redistributed into the new array using the same hashing process. This process is necessary because the index calculation depends on the current array size.
