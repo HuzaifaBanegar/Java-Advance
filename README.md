@@ -525,3 +525,83 @@ Processes have separate memory spaces, making them more isolated but harder to s
 
 ### For more detailed explanation of threads i have posted a blog of 4 parts on it. Please go through it here:
 https://medium.com/@huzaifaBanegar/multithreading-in-java-basics-to-in-depth-guide-part1-22d70f270a8a
+
+**3. Generics:** </br>
+Generics in a very powerful feature in programming languages such as Java and C# that enables you to write code that is more flexible, reusable and type-safe.
+They allow different classes, interface, methods with a placholder for types ( referred to as parameters) which can be specified when you create an instance or call methods.
+This help you create code duplications and improve type safety.
+
+► _Generics Classes_ </br>
+```
+class Box <T>{
+    private T item;
+    public void pack(T item){
+        this.item = item;
+    }
+    public T unpack(){
+       return item;
+    }
+
+}
+
+//usage:
+Box<String> stringBox = new Box();
+stringBox.pack("Hello Generics");
+System.out.println(stringBox.unpack); 
+```
+► _Generics Interface_ </br>
+```
+public interface GenericInterface <T, Q>{
+    public T getFirstValue();
+    public Q getSecondValue();
+}
+
+// implementation:
+public class GenericCalss<T, Q> implements GenericInterface <T, Q>{
+    private T first;
+    private Q second;
+    public GenericClass (T first, Q second){
+        this.first = first;
+        this.second = second;
+    }
+
+    public T getFirstValue() {return first;}
+
+    public Q getSecond() {return second;}
+}
+```
+
+► _Generics Methods_ </br>
+```
+public class GenericClassMethodExample{
+    public static <T> void printArray(T[] array){
+        for(T element: array){
+           System.out.print(element + " ");  
+        }  
+        System.out.println(); 
+    }
+
+    public static void main(String[] args){
+        Integer[] array1 = {1,2,3,4};
+        String[] array2 = {"A", "B", "C", "D"};
+        printArray(array1);
+        printArray(array2);
+    } 
+}
+```
+► _Bounded Type Parameters_ </br>
+You can restrict the type that can be used using type parameters by using Bounds. This ensures that the type paramter satisfies certain constraints.
+
+```
+class Calculator<T extends Number>{ 
+ // This ensures that the the type will be Number or child of number, and not Strings , Boolean etc.
+    public double add (T a, T b){
+        return a.doubleVlaue() + b.doubleValue();
+    }
+}
+
+//usage:
+Calculator<Integer> calc = new Calculator<>();
+System.out.println(cal.add(5,10)); // output: 15.0
+```
+
