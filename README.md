@@ -527,7 +527,7 @@ Processes have separate memory spaces, making them more isolated but harder to s
 https://medium.com/@huzaifaBanegar/multithreading-in-java-basics-to-in-depth-guide-part1-22d70f270a8a
 
 </br>
-</hr>
+<hr/>
 </br>
 
 **3. Generics:** </br>
