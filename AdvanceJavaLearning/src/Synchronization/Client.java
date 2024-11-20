@@ -17,7 +17,7 @@ public class Client {
         t1.join();
         t2.join();
 
-        System.out.println(c.val);
+        System.out.println("Final answer is :"+ c.val);
 
 
     }

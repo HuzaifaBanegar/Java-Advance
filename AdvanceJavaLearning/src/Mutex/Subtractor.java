@@ -14,11 +14,11 @@ public class Subtractor implements Runnable {
     public void run() {
 
         for(int i=1; i<=100; i++){
-            synchronized (lock){
+
                 lock.lock();
                 counter.count= counter.count-i;
                 lock.unlock();
-            }
+
         }
 
     }

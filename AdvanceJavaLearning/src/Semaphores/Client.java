@@ -4,38 +4,37 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 
-public class Client {
-    public static void main(String[] args) throws InterruptedException {
-        // ConcurrentLinkedQueue: Utilize atomic operations to ensure thread safety without locks
+public class Client{
+    public static void main(String[] args) {
         Queue<Object> queue = new ConcurrentLinkedQueue<>();
-        Semaphore producer = new Semaphore(6);
-        Semaphore consumer = new Semaphore(0);
+        Semaphore producerSemaphore = new Semaphore(6);
+        Semaphore consumerSemaphore = new Semaphore(0);
 
-        Producer p1 = new Producer(queue, producer, consumer);
-        Producer p2 = new Producer(queue, producer, consumer);
-        Producer p3 = new Producer(queue, producer, consumer);
-        Producer p4 = new Producer(queue, producer, consumer);
-        Producer p5 = new Producer(queue, producer, consumer);
-        Producer p6 = new Producer(queue, producer, consumer);
+        Producer producer1 = new Producer(queue, producerSemaphore, consumerSemaphore);
+        Producer producer2 = new Producer(queue, producerSemaphore, consumerSemaphore);
+        Producer producer3 = new Producer(queue, producerSemaphore, consumerSemaphore);
+        Producer producer4 = new Producer(queue, producerSemaphore, consumerSemaphore);
+        Producer producer5 = new Producer(queue, producerSemaphore, consumerSemaphore);
+        Producer producer6 = new Producer(queue, producerSemaphore, consumerSemaphore);
 
-        Consumer c1 = new Consumer(queue, producer, consumer);
-        Consumer c2 = new Consumer(queue, producer, consumer);
-        Consumer c3 = new Consumer(queue, producer, consumer);
-        Consumer c4 = new Consumer(queue, producer, consumer);
-        Consumer c5 = new Consumer(queue, producer, consumer);
+        Consumer consumer1 = new Consumer(queue, consumerSemaphore, producerSemaphore);
+        Consumer consumer2 = new Consumer(queue, consumerSemaphore, producerSemaphore);
+        Consumer consumer3 = new Consumer(queue, consumerSemaphore, producerSemaphore);
+        Consumer consumer4 = new Consumer(queue, consumerSemaphore, producerSemaphore);
+        Consumer consumer5 = new Consumer(queue, consumerSemaphore, producerSemaphore);
 
-        Thread tp1 = new Thread(p1);
-        Thread tp2 = new Thread(p2);
-        Thread tp3 = new Thread(p3);
-        Thread tp4 = new Thread(p4);
-        Thread tp5 = new Thread(p5);
-        Thread tp6 = new Thread(p6);
+        Thread tp1 = new Thread(producer1);
+        Thread tp2 = new Thread(producer2);
+        Thread tp3 = new Thread(producer3);
+        Thread tp4 = new Thread(producer4);
+        Thread tp5 = new Thread(producer5);
+        Thread tp6 = new Thread(producer6);
 
-        Thread tc1 = new Thread(c1);
-        Thread tc2 = new Thread(c2);
-        Thread tc3 = new Thread(c3);
-        Thread tc4 = new Thread(c4);
-        Thread tc5 = new Thread(c5);
+        Thread tc1 = new Thread(consumer1);
+        Thread tc2 = new Thread(consumer2);
+        Thread tc3 = new Thread(consumer3);
+        Thread tc4 = new Thread(consumer4);
+        Thread tc5 = new Thread(consumer5);
 
         tp1.start();
         tp2.start();
@@ -49,7 +48,6 @@ public class Client {
         tc3.start();
         tc4.start();
         tc5.start();
-
 
     }
 }

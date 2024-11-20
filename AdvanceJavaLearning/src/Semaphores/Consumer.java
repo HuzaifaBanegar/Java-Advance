@@ -1,31 +1,33 @@
 package Semaphores;
 
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
-
-public class Consumer implements Runnable {
-    private Queue queue;
-    private Semaphore producer;
-    private Semaphore consumer;
-    public Consumer(Queue queue, Semaphore producer, Semaphore consumer) {
+class Consumer implements Runnable {
+    private Queue<Object> queue;
+    private Semaphore producerSemaphore;
+    private Semaphore consumerSemaphore;
+    public Consumer (Queue queue, Semaphore producerSemaphore, Semaphore consumerSemaphore) {
         this.queue = queue;
-        this.producer = producer;
-        this.consumer = consumer;
+        this.producerSemaphore = producerSemaphore;
+        this.consumerSemaphore = consumerSemaphore;
     }
 
     @Override
     public void run() {
-        while (true){
-            try {
-                consumer.acquire();
-                if(!queue.isEmpty()){
-                    System.out.println("Consuming");
+        while (true) {
+           try{
+               consumerSemaphore.acquire();
+               if(!queue.isEmpty()){
+                   System.out.println("Consuming....");
                     queue.remove();
-                }
-                producer.release();
-            }catch (InterruptedException e){
-                throw new RuntimeException();
-            }
+               }
+               producerSemaphore.release();
+
+           }catch (InterruptedException e){
+               throw new RuntimeException();
+           }
         }
+
     }
 }
