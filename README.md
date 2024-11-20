@@ -741,7 +741,6 @@ static class Node<K, V> implements Map.Entry<K, V> {
 <hr/>
 </br>
 
-Sure! Let’s break down **Garbage Collection** and **Memory Management** in Java, as these are crucial aspects of how Java handles memory and object lifecycles.
 
 ### 1. Garbage Collection in Java
 
