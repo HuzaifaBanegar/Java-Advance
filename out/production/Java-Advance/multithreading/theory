@@ -1,0 +1,37 @@
+1) What is thread?
+- Thread represent a seperate path of execution of a group of statement.
+- In Java we write multiple statement, then these statements are executed by JVM one by one.
+This execution is called thread, because JVM uses thread to execute this statements.
+There is always a thread running internally.
+Threads are light weight - it uses minimum resolurces
+
+Thread t = Thread.currentThread();
+System.out.println(t); // Thread[main, 5, main] => [name_of_thread, priority(1 to 10, 1 is minimum and 10is max, default is 5), thread_group]
+
+
+2) What is difference bwteen Extends and Runnanble threads? Which one is advantageous?
+- Both are functionally same, But when you write extends , there is no scope for the class to extend another class further,
+as multiple inheritace is not allowded in java.
+-If we implement Runnable interface then it is possible to extend other class.
+
+3) What is thread Synchronization
+When a tread is already acting on an object, preventing any other thread to act on the object, is called "Thread Sychronization"
+There can be:
+a. Synchronized method: synchronized void display(){ // statements }
+b. Synchronized block: synchronized(object){ // statements }
+
+
+4) What is deadlock?
+When a thread has locked an object and is waiting for another object to be release by another thread,
+and that thread is aslo waiting for the first object to be relased by the first thread,
+they end up waiting for the resources to be released from each other, resulting in "Thread deadlock"
+
+5) Communication between threads
+- obj.notify(): This method releases the obj and sends notification to threads waiting to consume this object.
+- obj.notfyAll(): Notifies all the waiting threads, waiting for the resolurce to be released.
+- obj.wait(): This method waits for the object to be release. It will wait till it gets notification from notify() or notifyAll() methods.
+
+6) Difference between sleep() and wait():
+-Both are used to suspend a thread execution for specified time.
+When sleep() is called inside synchronized block the obj is still locked, but when wait() is called, it break the synchronized block.
+So the object lock is removed and it is now available.
